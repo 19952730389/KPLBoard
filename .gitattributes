@@ -1,0 +1,23 @@
+# 统一换行符：源码按平台原生（文本一律 LF 入库，检出时按平台转换）
+* text=auto eol=lf
+
+# 明确二进制，避免 diff / 合并误伤
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.icns binary
+*.zip binary
+*.dmg binary
+*.ipa binary
+*.hap binary
+*.p12 binary
+*.cer binary
+*.p7b binary
+*.xcuserstate binary
+
+# 生成文件不计入语言统计
+HarmonyOS/entry/src/main/resources/rawfile/** linguist-generated=true
+iOS/KPLBoard-iOS/Resources/data/** linguist-generated=true
+MacOS/KPLBoard-MacOS/Resources/data/** linguist-generated=true
+MacOS/legacy/** linguist-vendored=true
