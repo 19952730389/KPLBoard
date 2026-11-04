@@ -1,0 +1,60 @@
+name: Bug 报告
+description: 报告一个 KPLBoard 的问题
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: platform
+    attributes:
+      label: 端
+      description: 问题出现在哪个端？
+      options:
+        - iOS / iPadOS
+        - macOS
+        - HarmonyOS
+        - 文档 / 构建脚本
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: 版本
+      description: 各端版本见 README 的「版本」表格
+      placeholder: 例如 1.4.0
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: 系统版本
+      placeholder: 例如 iOS 18.2 / macOS 15.1 / HarmonyOS API 26
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 打开「比分看板」
+        2. 切换到 2026KPL春季赛
+        3. …
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+      description: 有截图或日志请直接贴在这里
+    validations:
+      required: true
