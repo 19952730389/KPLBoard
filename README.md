@@ -6,10 +6,10 @@
 
 iOS / iPadOS · macOS · HarmonyOS 各一套独立原生工程，同一个数据模型、同一套前端页面。
 
-[![License: Unlicense](https://img.shields.io/badge/License-Unlicense-blue.svg)](#-license)
-[![Platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20iPadOS%20%7C%20macOS%20%7C%20HarmonyOS-blue.svg)](#-三个端)
-[![Languages](https://img.shields.io/badge/languages-Swift%205%20%7C%20ArkTS-9cf.svg)](#-技术栈)
-[![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](#-技术栈)
+[![License: Unlicense](https://img.shields.io/badge/License-Unlicense-blue.svg)](#license)
+[![Platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20iPadOS%20%7C%20macOS%20%7C%20HarmonyOS-blue.svg)](#三个端)
+[![Languages](https://img.shields.io/badge/languages-Swift%205%20%7C%20ArkTS-9cf.svg)](#技术栈)
+[![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](#技术栈)
 
 </div>
 
@@ -17,19 +17,19 @@ iOS / iPadOS · macOS · HarmonyOS 各一套独立原生工程，同一个数据
 
 ## 目录
 
-- [这是什么](#-这是什么)
-- [三端截图](#-三端截图)
-- [三个端](#-三个端)
-- [仓库结构](#-仓库结构)
-- [快速上手](#-快速上手)
-- [技术栈](#-技术栈)
-- [数据来源](#-数据来源)
-- [离线数据](#-离线数据)
-- [版本](#-版本)
-- [路线图](#-路线图)
-- [参与贡献](#-参与贡献)
-- [免责声明](#-免责声明)
-- [License](#-license)
+- [这是什么](#这是什么)
+- [三端截图](#三端截图)
+- [三个端](#三个端)
+- [仓库结构](#仓库结构)
+- [快速上手](#快速上手)
+- [技术栈](#技术栈)
+- [数据来源](#数据来源)
+- [离线数据](#离线数据)
+- [版本](#版本)
+- [路线图](#路线图)
+- [参与贡献](#参与贡献)
+- [免责声明](#免责声明)
+- [License](#license)
 
 ---
 
