@@ -4,9 +4,14 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
+
+concurrency:
+  group: repo-check-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   hygiene:
@@ -15,80 +20,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 禁止构建产物入库
-        run: |
-          set -e
-          bad=$(git ls-files | grep -E '(^|/)build/|\.xcarchive$|\.app/|\.dmg$|\.ipa$|\.hap$|DerivedData/|oh_modules/|\.hvigor/|xcuserdata/|\.DS_Store$' || true)
-          if [ -n "$bad" ]; then
-            echo "::error::以下构建产物 / 本机文件不应入库："
-            echo "$bad"
-            exit 1
-          fi
-          echo "OK：仓库内没有构建产物"
-
-      - name: 禁止签名材料入库
-        run: |
-          set -e
-          bad=$(git ls-files | grep -E '\.(p12|cer|p7b|csr)$|(^|/)signing/' || true)
-          if [ -n "$bad" ]; then
-            echo "::error::签名材料不应入库："
-            echo "$bad"
-            exit 1
-          fi
-          echo "OK：仓库内没有签名材料"
-
-      - name: 校验 JSON / plist 格式
-        run: |
-          python3 - <<'PY'
-          import json, plistlib, os, sys
-          bad = []
-          n_json = n_plist = 0
-          for root, dirs, files in os.walk('.'):
-              dirs[:] = [d for d in dirs if d != '.git']
-              for f in files:
-                  p = os.path.join(root, f)
-                  if f.endswith('.json'):
-                      n_json += 1
-                      try:
-                          json.load(open(p, encoding='utf-8'))
-                      except Exception as e:
-                          bad.append((p, str(e)))
-                  elif f.endswith('.plist') or f.endswith('.entitlements'):
-                      try:
-                          plistlib.load(open(p, 'rb'))
-                          n_plist += 1
-                      except Exception as e:
-                          bad.append((p, str(e)))
-          print(f'JSON: {n_json} 个，plist: {n_plist} 个，失败: {len(bad)}')
-          for p, e in bad[:20]:
-              print(f'::error file={p}::{e}')
-          sys.exit(1 if bad else 0)
-          PY
-
-      - name: 校验 Xcode 工程引用的源文件都存在
-        run: |
-          set -e
-          python3 - <<'PY'
-          import os, sys
-          # pbxproj 里 path 是相对 group 的，直接拼路径会误报；这里只校验
-          # 「pbxproj 引用到的 .swift 文件名」在该工程目录下确实存在至少一份。
-          cases = [
-              ('iOS/KPLBoard-iOS.xcodeproj/project.pbxproj', 'iOS'),
-              ('MacOS/KPLBoard-MacOS.xcodeproj/project.pbxproj', 'MacOS'),
-          ]
-          missing = []
-          for proj, root in cases:
-              txt = open(proj, encoding='utf-8').read()
-              # 跳过 lastKnownFileType = sourcecode.swift 这类类型字面量
-              names = {n for n in re.findall(r'([A-Z][A-Za-z0-9_]*\.swift)', txt)}
-              found = set()
-              for dirpath, dirnames, filenames in os.walk(root):
-                  dirnames[:] = [d for d in dirnames if d not in ('build', '.git')]
-                  found.update(filenames)
-              gone = sorted(names - found)
-              print(f'{proj}: 引用 {len(names)} 个 Swift 文件，缺失 {len(gone)} 个')
-              for g in gone:
-                  print(f'::error file={root}/{g}::pbxproj 引用了不存在的源文件')
-              missing += gone
-          sys.exit(1 if missing else 0)
-          PY
+      - name: 运行检查脚本
+        run: python3 scripts/check-repo.py

@@ -103,6 +103,8 @@ KPLBoard/
 │   ├── PACKAGING.md     # 打包与真机安装全流程
 │   └── QUICKSTART.md    # 换一台电脑直接上手
 ├── docs/screenshots/    # README 用截图
+├── scripts/
+│   └── check-repo.py    # 仓库自检（构建产物 / 签名材料 / JSON·plist / Xcode 引用）
 ├── LICENSE
 └── README.md
 ```
@@ -214,7 +216,10 @@ DEVECOROOT="/Applications/DevEco-Studio.app/Contents" bash build-hap.sh
 ## 参与贡献
 
 1. Fork 本仓库并新建分支：`git checkout -b feat/your-feature`
-2. 提交前请确认构建产物没有被带入（`git status` 应看不到 `build/`、`*.hap`、`DerivedData/`）
+2. 提交前跑一遍仓库自检（构建产物、签名材料、JSON/plist 格式、Xcode 工程引用）：
+   ```bash
+   python3 scripts/check-repo.py
+   ```
 3. 提交 Pull Request，说明改动落在哪个端、影响哪些模块
 
 Issue 里请带上：端（iOS / macOS / HarmonyOS）、系统版本、复现步骤、截图或日志。
