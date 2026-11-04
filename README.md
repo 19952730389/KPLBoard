@@ -6,7 +6,7 @@
 
 iOS / iPadOS · macOS · HarmonyOS 各一套独立原生工程，同一个数据模型、同一套前端页面。
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#-license)
+[![License: Unlicense](https://img.shields.io/badge/License-Unlicense-blue.svg)](#-license)
 [![Platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20iPadOS%20%7C%20macOS%20%7C%20HarmonyOS-blue.svg)](#-三个端)
 [![Languages](https://img.shields.io/badge/languages-Swift%205%20%7C%20ArkTS-9cf.svg)](#-技术栈)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](#-技术栈)
@@ -231,4 +231,4 @@ Issue 里请带上：端（iOS / macOS / HarmonyOS）、系统版本、复现步
 
 ## License
 
-[MIT](LICENSE) © 2026 KPLBoard
+[Unlicense](LICENSE)（公有领域，与仓库原有 LICENSE 一致）
