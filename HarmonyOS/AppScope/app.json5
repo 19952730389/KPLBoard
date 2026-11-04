@@ -1,0 +1,16 @@
+{
+  "app": {
+    "bundleName": "com.ccgo.kplboard",
+    "vendor": "ccgo",
+    "versionCode": 10000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    /* 与 build-profile.json5 的 compatible/targetSdkVersion 保持一致：
+       本机只装了 HarmonyOS 26.0.0（API 26），故 min/target 都写 26。
+       装到更老系统的机器上会提示版本不兼容 —— 解决办法是在 DevEco 的
+       Settings > SDK 里下载对应版本 SDK，然后同步改这两处。 */
+    "minAPIVersion": 26,
+    "targetAPIVersion": 26
+  }
+}

@@ -1,0 +1,10 @@
+# 混淆规则（release 构建才会用到）。离线壳没有敏感逻辑，保持关闭即可。
+# 若后续开启，请把 WebView 注入用到的 JS 方法名（setSafeArea 等）加入白名单。
+-enable-property-obfuscation
+-enable-toplevel-obfuscation
+-compact
+-keep-property-name
+  setSafeArea
+-keep-global-name
+  KPLMobile
+  KPLBridge

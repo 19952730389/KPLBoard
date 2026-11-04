@@ -1,0 +1,227 @@
+/* ==========================================================
+   KPL 统一外壳：左侧导航（可拖拽排序） + 视图切换
+   与 style.css / tools.css 共用同一套 CSS 变量
+   ========================================================== */
+
+/* ---------- 布局骨架 ---------- */
+.app {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 236px minmax(0, 1fr);
+  min-height: 100vh;
+}
+.content { min-width: 0; }
+
+/* 视图容器：同一时刻只显示一个 */
+.view { display: none; }
+.view.on { display: block; }
+body.is-sorting { cursor: grabbing; }
+body.is-sorting .view { pointer-events: none; }
+
+/* ---------- 侧边栏 ---------- */
+.sidebar {
+  position: sticky; top: 0; height: 100vh;
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 16px 12px 14px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--line);
+  /* -webkit- 前缀供 iOS 15.4 之前的 Safari/WebKit 使用 */
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  overflow-y: auto; overflow-x: hidden;
+}
+
+.side-brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 4px 6px 13px;
+  border-bottom: 1px solid var(--line);
+}
+.side-brand .side-logo {
+  width: 36px; height: 36px; border-radius: 11px; flex: 0 0 auto;
+  display: grid; place-items: center;
+  background: linear-gradient(150deg, #f5c451, #ff8a3d);
+  color: #1a1205; font-weight: 900; font-size: 18px;
+}
+.side-brand .t { line-height: 1.3; min-width: 0; }
+.side-brand .t b { display: block; font-size: 14.5px; letter-spacing: .3px; }
+.side-brand .t span { font-size: 10.5px; color: var(--muted); }
+
+/* ---------- 导航列表 ---------- */
+.nav { display: flex; flex-direction: column; gap: 2px; }
+.nav-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .16em;
+  color: var(--muted); opacity: .75;
+  padding: 9px 9px 6px;
+}
+
+.nav-item {
+  position: relative;
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 9px;
+  border: 1px solid transparent; border-radius: 10px;
+  background: transparent; color: var(--muted);
+  font-size: 13.5px; font-weight: 600;
+  cursor: grab; user-select: none; -webkit-user-select: none;
+  touch-action: pan-y;
+  transition: background .15s, color .15s, border-color .15s, transform .15s;
+}
+.nav-item > svg { width: 17px; height: 17px; flex: 0 0 auto; opacity: .92; }
+.nav-item .nm { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-item .grip {
+  flex: 0 0 auto; opacity: 0; color: var(--muted);
+  display: grid; place-items: center;
+  transition: opacity .15s, color .15s;
+}
+.nav-item .grip svg { width: 13px; height: 13px; display: block; }
+.nav-item:hover { background: rgba(var(--tint), .045); color: var(--text); }
+.nav-item:hover .grip { opacity: .55; }
+.nav-item:focus-visible { outline: 2px solid rgba(245, 196, 81, .5); outline-offset: 1px; }
+.nav-item.on {
+  background: rgba(245, 196, 81, .12);
+  border-color: rgba(245, 196, 81, .28);
+  color: var(--gold);
+}
+.nav-item.on .grip { color: rgba(245, 196, 81, .6); }
+
+/* 长按/拖动状态 */
+.nav-item.armed { background: rgba(245, 196, 81, .09); color: var(--text); }
+.nav-item.dragging {
+  opacity: .3;
+  border-style: dashed; border-color: rgba(245, 196, 81, .5);
+  background: rgba(245, 196, 81, .05);
+  cursor: grabbing;
+}
+
+/* 跟随鼠标的浮层 */
+.nav-ghost {
+  position: fixed; left: 0; top: 0; z-index: 90;
+  pointer-events: none;
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 9px;
+  border: 1px solid rgba(245, 196, 81, .42); border-radius: 10px;
+  background: var(--panel-solid);
+  color: var(--gold);
+  font-size: 13.5px; font-weight: 600;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .62), 0 0 0 1px rgba(var(--tint), .04) inset;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.nav-ghost svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.nav-ghost .nm { flex: 1 1 auto; }
+.nav-ghost .grip { opacity: .7; display: grid; place-items: center; }
+.nav-ghost .grip svg { width: 13px; height: 13px; }
+
+.sidebar .spacer { flex: 1 1 auto; min-height: 10px; }
+
+/* ---------- 侧栏底部 ---------- */
+.side-foot {
+  display: flex; flex-direction: column; gap: 8px;
+  padding: 10px 8px 0;
+  border-top: 1px solid var(--line);
+  font-size: 10.5px; color: var(--muted); line-height: 1.65;
+}
+.side-foot .hint { display: flex; align-items: center; gap: 6px; }
+.side-foot .hint svg { width: 12px; height: 12px; flex: 0 0 auto; opacity: .8; }
+.mini-btn {
+  align-self: flex-start;
+  padding: 5px 10px; border-radius: 8px;
+  border: 1px solid var(--line); background: rgba(var(--tint), .04);
+  color: var(--muted); font-size: 11px; font-weight: 600;
+  transition: .15s;
+}
+.mini-btn:hover { color: var(--gold); border-color: rgba(245, 196, 81, .35); background: rgba(245, 196, 81, .08); }
+.side-foot a { color: var(--blue); }
+
+/* ---------- 本地缓存状态提示（悬浮小胶囊） ---------- */
+/* 旧版是吸顶通栏：占满一行、盖住页面标题区，移动端还会把正文往下挤。
+   改为右下角悬浮小胶囊：
+   · fixed 脱离文档流——不占位、不推移正文，遮挡面积缩小到一行以内；
+   · 尺寸收紧（12px 字号、8px 内边距），只保留状态 + 两个操作 + 关闭；
+   · 离线/异常仍用红/黄着色提示严重程度；
+   · 支持手动关闭（×）与自动收起（shell.js 8s 后收成小圆钮，点开即恢复）。 */
+.cache-bar {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 80;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  max-width: min(92vw, 480px);
+  padding: 8px 10px 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel-solid);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .28);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  font-size: 12px; color: var(--muted);
+  animation: cb-in .18s ease;
+}
+@keyframes cb-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.cache-bar[hidden] { display: none; }
+.cache-bar.offline {
+  border-color: rgba(255, 138, 149, .35);
+  color: var(--text);
+  background: linear-gradient(0deg, rgba(255, 138, 149, .12), rgba(255, 138, 149, .12)), var(--panel-solid);
+}
+.cache-bar.stale {
+  border-color: rgba(245, 196, 81, .32);
+  color: var(--text);
+  background: linear-gradient(0deg, rgba(245, 196, 81, .10), rgba(245, 196, 81, .10)), var(--panel-solid);
+}
+.cache-bar .cb-ico { flex: 0 0 auto; font-size: 13px; line-height: 1; }
+.cache-bar .cb-text { flex: 0 1 auto; min-width: 0; }
+.cache-bar .cb-time { flex: 0 0 auto; opacity: .8; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cache-bar .mini-btn { flex: 0 0 auto; padding: 4px 9px; font-size: 11px; min-height: 26px; }
+.cache-bar .mini-btn:first-of-type { margin-left: auto; }
+.cache-bar .mini-btn.ghost { background: transparent; }
+
+/* 关闭按钮（×） */
+.cache-bar .cb-close {
+  flex: 0 0 auto; width: 22px; height: 22px;
+  display: grid; place-items: center;
+  border: 0; border-radius: 999px; background: transparent;
+  color: var(--muted); font-size: 15px; line-height: 1; cursor: pointer;
+}
+.cache-bar .cb-close:hover { color: var(--text); background: rgba(var(--tint), .08); }
+
+/* 收起态：整条缩成一个小圆钮（只留状态图标），点它展开 */
+.cache-bar.is-min {
+  padding: 0; gap: 0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.cache-bar.is-min .cb-text,
+.cache-bar.is-min .cb-time,
+.cache-bar.is-min .mini-btn,
+.cache-bar.is-min .cb-close { display: none; }
+.cache-bar.is-min .cb-ico {
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  font-size: 15px; cursor: pointer;
+}
+
+/* ---------- 响应式：窄屏改为顶部横向滑动条 ---------- */
+@media (max-width: 1000px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar {
+    position: sticky; top: 0; height: auto; z-index: 20;
+    flex-direction: row; align-items: center; gap: 10px;
+    padding: 9px 12px; overflow-x: auto; overflow-y: hidden;
+    border-right: none; border-bottom: 1px solid var(--line);
+  }
+  .side-brand { flex: 0 0 auto; padding: 0 12px 0 0; border-bottom: none; border-right: 1px solid var(--line); }
+  .side-brand .t { display: none; }
+  .nav { flex-direction: row; flex: 1 1 auto; gap: 4px; }
+  .nav-label { display: none; }
+  .nav-item { flex: 0 0 auto; white-space: nowrap; padding: 8px 11px; }
+  .nav-item .grip { display: none; }
+  .sidebar .spacer { flex: 0 0 auto; min-height: 0; }
+  .side-foot {
+    flex: 0 0 auto; padding: 0; border-top: none; flex-direction: row; align-items: center;
+  }
+  .side-foot .hint, .side-foot .src { display: none; }
+  .mini-btn { white-space: nowrap; }
+}

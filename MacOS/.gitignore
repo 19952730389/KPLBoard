@@ -1,0 +1,19 @@
+# ---- 构建产物（可由 ./build-dmg.sh 重新生成，不必入库） ----
+build/
+DerivedData/
+*.dmg
+*.sha256
+*.xcarchive
+*.app/
+
+# ---- Xcode 用户态（本机路径 / 断点 / 窗口布局，换机即失效） ----
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad
+*.moved-aside
+*.persistentv3
+
+# ---- macOS 文件系统噪音 ----
+.DS_Store
+.AppleDouble
+._*

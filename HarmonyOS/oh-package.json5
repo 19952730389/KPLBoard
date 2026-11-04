@@ -1,0 +1,14 @@
+{
+  "modelVersion": "5.0.0",
+  "name": "kplboard",
+  "version": "1.0.0",
+  "description": "KPL 赛事数据台 · HarmonyOS 离线版",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {},
+  /* 不引入 hypium/hamock 等测试依赖：工程里没有测试代码，
+     留着会让 DevEco 打开工程时联网拉包，离线环境下直接卡住。 */
+  "devDependencies": {
+  }
+}

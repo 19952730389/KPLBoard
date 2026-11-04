@@ -1,0 +1,9 @@
+{
+  "string": [
+    { "name": "module_desc", "value": "KPL 赛事数据台" },
+    { "name": "EntryAbility_desc", "value": "KPL 赛事数据台" },
+    { "name": "EntryAbility_label", "value": "KPL 数据台" },
+    { "name": "internet_reason", "value": "用于首次打开时校验本地数据是否为最新" },
+    { "name": "netinfo_reason", "value": "用于在网络恢复时提示可更新数据" }
+  ]
+}

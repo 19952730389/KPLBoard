@@ -1,0 +1,31 @@
+{
+  "apiType": "stageMode",
+  /* 纯 ArkTS 工程，没有 native 代码，不要声明 externalNativeOptions
+     （指向不存在的 CMakeLists.txt 会直接让构建失败）。
+     产物为方舟字节码，arm64-v8a 设备通用，无需 abiFilters。 */
+  "buildOption": {
+  },
+  "buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": false,
+            "files": ["./obfuscation-rules.txt"]
+          }
+        }
+      },
+      "nativeLib": {
+        "debugSymbol": {
+          "strip": true
+        }
+      }
+    }
+  ],
+  "targets": [
+    {
+      "name": "default"
+    }
+  ]
+}

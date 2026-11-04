@@ -1,0 +1,22 @@
+# Xcode / 构建产物（工作区内 build* 共约 500MB，绝对不能入库）
+build/
+build-derived/
+build-device/
+*.xcarchive
+DerivedData/
+
+# Xcode 用户状态（断点、窗口布局、scheme 选择）
+*.xcuserstate
+*.xcuserdatad/
+xcuserdata/
+
+# macOS
+.DS_Store
+
+# SwiftPM
+.swiftpm/
+Packages/
+
+# 日志与临时文件
+*.log
+/tmp/

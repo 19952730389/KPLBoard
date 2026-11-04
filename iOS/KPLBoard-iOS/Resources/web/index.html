@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<!-- viewport-fit=cover：保留与桌面版一致的视口行为（macOS 无刘海/圆角，mac.css 里不再补安全区） -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0e17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>KPL 赛事比分看板 · 2016-现在</title>
+<link rel="stylesheet" href="style.css?v=20261010c">
+<link rel="stylesheet" href="tools.css?v=20261010a">
+<link rel="stylesheet" href="shell.css?v=20261007f">
+<link rel="stylesheet" href="theme.css?v=20261007f">
+<!-- iOS / iPadOS 适配层：必须放在最后，才能覆盖上面各文件的响应式断点 -->
+<link rel="stylesheet" href="ios.css?v=20261010e">
+<!-- 主题须先于渲染执行，避免刷新瞬间闪白/闪黑 -->
+<script src="theme.js?v=20261007f"></script>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<div class="app">
+  <!-- ================= 左侧导航（可拖拽排序） ================= -->
+  <aside class="sidebar">
+    <div class="side-brand">
+      <div class="side-logo">K</div>
+      <div class="t"><b>KPL Agent</b><span>职业赛场数据台</span></div>
+    </div>
+
+    <nav class="nav" id="nav"></nav>
+
+    <div class="spacer"></div>
+
+    <div class="side-foot">
+      <div class="hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18M12 3l-2.4 2.4M12 3l2.4 2.4M12 21l-2.4-2.4M12 21l2.4-2.4M3 12l2.4-2.4M3 12l2.4 2.4M21 12l-2.4-2.4M21 12l-2.4 2.4"/></svg>
+        按住条目上下拖动可调整顺序
+      </div>
+      <div id="themeSwitch"></div>
+      <button class="mini-btn" id="navReset">恢复默认顺序</button>
+      <div class="src">数据来源：腾讯官方英雄/装备库 + 玩加赛事职业统计 + 王者荣耀官网公告</div>
+    </div>
+  </aside>
+
+  <div class="content">
+    <!-- ================= 本地缓存状态条（在线时不显示） ================= -->
+    <div class="cache-bar" id="cacheBar" hidden>
+      <span class="cb-ico" id="cacheIco">⛔</span>
+      <span class="cb-text" id="cacheText">离线模式 · 正在显示本地缓存</span>
+      <span class="cb-time" id="cacheTime"></span>
+      <button class="mini-btn" id="cacheRetry">重试联网</button>
+      <button class="mini-btn ghost" id="cacheClear">清空缓存</button>
+      <button class="cb-close" id="cacheClose" title="收起提示" aria-label="收起提示">&times;</button>
+    </div>
+
+    <!-- ================= 视图一：比分看板 ================= -->
+    <section class="view" id="view-board">
+      <header class="topbar">
+        <div class="app-name">KPL 比分看板</div>
+        <div class="brand">
+          <div class="logo">KPL</div>
+          <div class="titles">
+            <h1 id="eventName">KPL 赛事比分看板</h1>
+            <p class="sub"><span id="eventRange">—</span> · 比分与战绩统计</p>
+          </div>
+        </div>
+        <div class="topright">
+          <div class="clock">
+            <div class="time" id="clock">--:--:--</div>
+            <div class="statusline">
+              <span class="dot" id="connDot"></span>
+              <span id="connText">连接中…</span>
+            </div>
+          </div>
+          <button id="refreshBtn" class="btn-refresh" title="立即刷新">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.5a8.5 8.5 0 1 0-2.4 6.6"/><path d="M20.5 5.5v6h-6"/></svg></span><span>刷新</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="filters">
+        <div class="season-picker">
+          <label for="seasonSelect">赛季</label>
+          <select id="seasonSelect"></select>
+          <div class="step-btns">
+            <button id="seasonNewer" class="nav-mini" title="更新的赛季">‹ 新</button>
+            <button id="seasonOlder" class="nav-mini" title="更早的赛季">旧 ›</button>
+          </div>
+          <span class="season-meta" id="seasonMeta"></span>
+        </div>
+        <div class="stage-filter">
+          <label for="stageSelect">阶段</label>
+          <select id="stageSelect"><option value="">全部阶段</option></select>
+        </div>
+      </section>
+
+      <section class="stats" id="stats"></section>
+
+      <section class="live-zone">
+        <div class="section-head">
+          <h2>进行中 / 即将开赛</h2>
+          <span class="hint" id="liveHint">—</span>
+        </div>
+        <div id="liveCards" class="live-cards"></div>
+      </section>
+
+      <main class="grid">
+        <div class="standings-zone" id="standingsZone">
+          <section class="panel">
+            <div class="section-head">
+              <h2>战队战绩榜</h2>
+              <span class="hint">按积分 → 净胜小局排序</span>
+            </div>
+            <div class="empty">正在加载分组战绩…</div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="section-head">
+            <h2>赛程日历</h2>
+            <div class="week-nav">
+              <button id="prevWeek">‹ 上周</button>
+              <span id="weekLabel">—</span>
+              <button id="nextWeek">下周 ›</button>
+              <button id="homeWeek" class="ghost">本周</button>
+            </div>
+          </div>
+          <div id="scheduleList" class="schedule"></div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>数据来源：玩加赛事 wanplus.cn（赛程/历史/逐小局） + PandaScore（进行中比赛的实时比分） · 收录 2016 年首届 KPL 至今共 78 项赛事 · 进行中比赛每 8 秒刷新</span>
+        <span id="updatedAt" class="muted">—</span>
+      </footer>
+    </section>
+
+    <!-- ================= 视图二：工具箱（5 个子视图由 tools.js 渲染） ================= -->
+    <section class="view" id="view-tool">
+      <main class="main" id="main"></main>
+    </section>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="close" id="lbClose">&times;</button>
+  <img id="lbImg" class="im" alt="">
+  <div class="lb-info" id="lbInfo"></div>
+  <div class="cap" id="lbCap"></div>
+</div>
+
+<script src="img.js?v=20261007f"></script>
+<script src="store.js?v=20261007f"></script>
+<script src="app.js?v=20261010c"></script>
+<script src="tools.js?v=20261010e"></script>
+<script src="shell.js?v=20261011a"></script>
+</body>
+</html>

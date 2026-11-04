@@ -1,0 +1,25 @@
+{
+  /* 构建工具版本。dependencies 留空 = 直接用 DevEco Studio 内置的 hvigor
+     （本机 DevEco 26.0.0.851 内置 @ohos/hvigor 与 hvigor-ohos-plugin 均为 6.26.8）。
+     写死版本号反而会让 DevEco 联网去拉对应版本、且易与 IDE 内置版本冲突。
+     若确实要用命令行独立构建，把下面的版本号填上并先执行 ohpm install。 */
+  "modelVersion": "5.0.0",
+  "dependencies": {
+  },
+  "execution": {
+    "daemon": true,
+    "incremental": true,
+    "parallel": true,
+    "typeCheck": false
+  },
+  "logging": {
+    "level": "info"
+  },
+  "debugging": {
+    "stacktrace": false
+  },
+  "nodeOptions": {
+    "maxOldSpaceSize": 4096,
+    "exposeGC": true
+  }
+}

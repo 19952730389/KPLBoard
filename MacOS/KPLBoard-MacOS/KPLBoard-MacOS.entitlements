@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- App Sandbox：macOS 模板默认开启 -->
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+	<!-- 出网：三个上游数据源（玩加 / KPL 官方 / PandaScore）以及队标 CDN 需要 -->
+	<key>com.apple.security.network.client</key>
+	<true/>
+</dict>
+</plist>

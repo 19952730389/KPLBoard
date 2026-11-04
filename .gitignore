@@ -1,0 +1,51 @@
+# ---- 顶层通用忽略规则（各平台目录另有自己的 .gitignore） ----
+
+# 构建产物
+build/
+build-*/
+DerivedData/
+*.xcarchive
+*.app/
+*.dmg
+*.ipa
+*.hap
+*.sha256
+
+# 依赖与缓存
+node_modules/
+.swiftpm/
+Packages/
+oh_modules/
+.hvigor/
+
+# Xcode 用户态（断点 / 窗口布局 / scheme 选择，换机即失效）
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad
+*.moved-aside
+*.persistentv3
+
+# 签名材料
+*.p7b
+*.cer
+*.p12
+*.csr
+signing/
+
+# 把一个工程拷进另一个工程时留下的临时目录
+.tmpcheck/
+.build-mc2/
+.workbuddy/
+.dsh-ops-update-*.lock
+
+# 本机路径
+local.properties
+.idea/
+
+# 系统
+.DS_Store
+.AppleDouble
+._*
+
+# 日志
+*.log

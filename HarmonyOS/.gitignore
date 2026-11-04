@@ -1,0 +1,27 @@
+# ---- 构建产物（由 bash build-hap.sh 重新生成，不必入库） ----
+build/
+entry/build/
+.hvigor/
+oh_modules/
+*.hap
+*.hsp
+*.har
+
+# ---- 本机工具链路径（每个人 DevEco 安装位置不同，DevEco 打开工程时会自动重建） ----
+local.properties
+.idea/
+*.iml
+
+# ---- 签名材料（真机签名证书 / profile，绝对不能入库） ----
+*.p7b
+*.cer
+*.p12
+*.csr
+signing/
+
+# ---- 临时与系统噪音 ----
+.DS_Store
+.AppleDouble
+._*
+*.log
+/tmp/

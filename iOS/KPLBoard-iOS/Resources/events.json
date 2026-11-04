@@ -1,0 +1,2029 @@
+{
+ "events": [
+  {
+   "id": "1167",
+   "name": "2026KPL春季赛",
+   "year": 2026,
+   "category": "联赛",
+   "mode": "live",
+   "start": "2026-01-14",
+   "end": "2026-04-11",
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL春季赛"
+  },
+  {
+   "id": "1171",
+   "name": "2026王者荣耀挑战者杯",
+   "year": 2026,
+   "category": "杯赛",
+   "mode": "live",
+   "start": "2026-04-25",
+   "end": "2026-05-23",
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀挑战者杯"
+  },
+  {
+   "id": "1172",
+   "name": "2026KPL夏季赛",
+   "year": 2026,
+   "category": "联赛",
+   "mode": "live",
+   "start": "2026-06-17",
+   "end": "2026-09-12",
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL夏季赛"
+  },
+  {
+   "id": "1201",
+   "name": "2026 KPL年度总决赛",
+   "year": 2026,
+   "category": "联赛",
+   "mode": "live",
+   "start": "2026-10-02",
+   "end": "2026-11-14",
+   "catOrder": 0,
+   "grouped": true,
+   "short": "KPL年度总决赛"
+  },
+  {
+   "id": "1155",
+   "name": "2025KPL春季赛",
+   "year": 2025,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3775",
+     "name": "常规赛第一轮",
+     "way": 3
+    },
+    {
+     "id": "3799",
+     "name": "季后赛",
+     "way": 3
+    },
+    {
+     "id": "3777",
+     "name": "常规赛第二轮",
+     "way": 3
+    },
+    {
+     "id": "3788",
+     "name": "常规赛第三轮",
+     "way": 3
+    },
+    {
+     "id": "3800",
+     "name": "总决赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL春季赛",
+   "start": "2025-02-12",
+   "end": "2025-05-10"
+  },
+  {
+   "id": "1158",
+   "name": "2025KPL夏季赛",
+   "year": 2025,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3803",
+     "name": "第一轮",
+     "way": 3
+    },
+    {
+     "id": "3805",
+     "name": "第二轮",
+     "way": 3
+    },
+    {
+     "id": "3813",
+     "name": "第二轮卡位赛",
+     "way": 3
+    },
+    {
+     "id": "3814",
+     "name": "第三轮",
+     "way": 3
+    },
+    {
+     "id": "3818",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL夏季赛",
+   "start": "2025-06-05",
+   "end": "2025-09-07"
+  },
+  {
+   "id": "1162",
+   "name": "2025KPL年度总决赛",
+   "year": 2025,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3844",
+     "name": "淘汰赛",
+     "way": 2
+    },
+    {
+     "id": "3826",
+     "name": "擂台赛",
+     "way": 3
+    },
+    {
+     "id": "3838",
+     "name": "突围赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL年度总决赛",
+   "start": "2025-09-28",
+   "end": "2025-11-08"
+  },
+  {
+   "id": "1166",
+   "name": "2025年王者荣耀挑战者杯",
+   "year": 2025,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3861",
+     "name": "单败淘汰赛",
+     "way": 1
+    },
+    {
+     "id": "3864",
+     "name": "双败淘汰赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀挑战者杯",
+   "start": "2025-12-06",
+   "end": "2026-01-02"
+  },
+  {
+   "id": "1140",
+   "name": "2024KPL春季赛",
+   "year": 2024,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3720",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "3728",
+     "name": "卡位赛",
+     "way": 0
+    },
+    {
+     "id": "3731",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL春季赛",
+   "start": "2024-01-31",
+   "end": "2024-05-18"
+  },
+  {
+   "id": "1144",
+   "name": "2024 KPL 夏季赛",
+   "year": 2024,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3739",
+     "name": "常规赛第一轮",
+     "way": 3
+    },
+    {
+     "id": "3741",
+     "name": "常规赛第二轮",
+     "way": 3
+    },
+    {
+     "id": "3745",
+     "name": "第二轮卡位赛",
+     "way": 3
+    },
+    {
+     "id": "3754",
+     "name": "常规赛第三轮",
+     "way": 3
+    },
+    {
+     "id": "3762",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL 夏季赛",
+   "start": "2024-06-12",
+   "end": "2024-09-15"
+  },
+  {
+   "id": "1146",
+   "name": "2024王者荣耀x电竞世界杯",
+   "year": 2024,
+   "category": "其他赛事",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3746",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "3747",
+     "name": "淘汰赛",
+     "way": 1
+    },
+    {
+     "id": "3752",
+     "name": "半决赛",
+     "way": 1
+    },
+    {
+     "id": "3753",
+     "name": "总决赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 4,
+   "grouped": false,
+   "short": "王者荣耀x电竞世界杯",
+   "start": "2024-08-01",
+   "end": "2024-08-04"
+  },
+  {
+   "id": "1148",
+   "name": "2024年王者荣耀KPL年度总决赛",
+   "year": 2024,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3763",
+     "name": "擂台赛",
+     "way": 3
+    },
+    {
+     "id": "3767",
+     "name": "突围赛",
+     "way": 1
+    },
+    {
+     "id": "3768",
+     "name": "淘汰赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "王者荣耀KPL年度总决赛",
+   "start": "2024-10-02",
+   "end": "2024-11-16"
+  },
+  {
+   "id": "1151",
+   "name": "2024年王者荣耀挑战者杯",
+   "year": 2024,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3769",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "3772",
+     "name": "淘汰赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀挑战者杯",
+   "start": "2024-12-07",
+   "end": "2024-12-29"
+  },
+  {
+   "id": "1124",
+   "name": "2023 KPL春季赛",
+   "year": 2023,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3657",
+     "name": "常规赛 第一轮",
+     "way": 3
+    },
+    {
+     "id": "3658",
+     "name": "常规赛 第二轮",
+     "way": 3
+    },
+    {
+     "id": "3662",
+     "name": "常规赛 第二轮卡位赛",
+     "way": 0
+    },
+    {
+     "id": "3663",
+     "name": "常规赛 第三轮",
+     "way": 3
+    },
+    {
+     "id": "3665",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL春季赛",
+   "start": "2023-02-10",
+   "end": "2023-05-13"
+  },
+  {
+   "id": "1128",
+   "name": "2023 KPL夏季赛",
+   "year": 2023,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3674",
+     "name": "常规赛 第一轮",
+     "way": 3
+    },
+    {
+     "id": "3675",
+     "name": "常规赛 第二轮",
+     "way": 3
+    },
+    {
+     "id": "3679",
+     "name": "定位赛",
+     "way": 0
+    },
+    {
+     "id": "3680",
+     "name": "常规赛 第三轮",
+     "way": 3
+    },
+    {
+     "id": "3682",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL夏季赛",
+   "start": "2023-06-14",
+   "end": "2023-09-10"
+  },
+  {
+   "id": "1131",
+   "name": "杭州亚运会王者荣耀亚运版本",
+   "year": 2023,
+   "category": "其他赛事",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3688",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "3689",
+     "name": "晋级赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 4,
+   "grouped": false,
+   "short": "杭州亚运会王者荣耀亚运版本",
+   "start": "2023-09-24",
+   "end": "2023-09-26"
+  },
+  {
+   "id": "1134",
+   "name": "2023王者荣耀挑战者杯",
+   "year": 2023,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3701",
+     "name": "淘汰赛",
+     "way": 1
+    },
+    {
+     "id": "3693",
+     "name": "瑞士轮(1)",
+     "way": 0
+    },
+    {
+     "id": "3694",
+     "name": "瑞士轮(2)",
+     "way": 0
+    },
+    {
+     "id": "3697",
+     "name": "瑞士轮(3)",
+     "way": 0
+    },
+    {
+     "id": "3698",
+     "name": "瑞士轮(4)",
+     "way": 0
+    },
+    {
+     "id": "3699",
+     "name": "瑞士轮(5)",
+     "way": 0
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀挑战者杯",
+   "start": "2023-10-13",
+   "end": "2023-11-05"
+  },
+  {
+   "id": "1135",
+   "name": "2023世界冠军杯 选拔赛",
+   "year": 2023,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3706",
+     "name": "KPL选拔(1)",
+     "way": 3
+    },
+    {
+     "id": "3704",
+     "name": "KPL选拔(2)",
+     "way": 3
+    },
+    {
+     "id": "3705",
+     "name": "外卡选拔赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "世界冠军杯 选拔赛",
+   "start": "2023-11-16",
+   "end": "2023-11-25"
+  },
+  {
+   "id": "1136",
+   "name": "2023王者荣耀世界冠军杯",
+   "year": 2023,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3707",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "3716",
+     "name": "淘汰赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀世界冠军杯",
+   "start": "2023-11-29",
+   "end": "2023-12-30"
+  },
+  {
+   "id": "1084",
+   "name": "2022 KPL春季赛",
+   "year": 2022,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3530",
+     "name": "常规赛 第一轮",
+     "way": 3
+    },
+    {
+     "id": "3541",
+     "name": "常规赛 第二轮",
+     "way": 3
+    },
+    {
+     "id": "3567",
+     "name": "卡位赛",
+     "way": 0
+    },
+    {
+     "id": "3568",
+     "name": "常规赛 第三轮",
+     "way": 3
+    },
+    {
+     "id": "3578",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL春季赛",
+   "start": "2022-02-09",
+   "end": "2022-05-08"
+  },
+  {
+   "id": "1094",
+   "name": "2022 K甲春季赛",
+   "year": 2022,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3540",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "3573",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "K甲春季赛",
+   "start": "2022-02-14",
+   "end": "2022-05-01"
+  },
+  {
+   "id": "1096",
+   "name": "2022年KPL夏季赛资格赛",
+   "year": 2022,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3580",
+     "name": "资格赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL夏季赛资格赛",
+   "start": "2022-05-09",
+   "end": "2022-05-11"
+  },
+  {
+   "id": "1097",
+   "name": "2022 KPL夏季赛",
+   "year": 2022,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3583",
+     "name": "常规赛 第一轮",
+     "way": 3
+    },
+    {
+     "id": "3595",
+     "name": "常规赛 第二轮",
+     "way": 3
+    },
+    {
+     "id": "3599",
+     "name": "卡位赛",
+     "way": 0
+    },
+    {
+     "id": "3601",
+     "name": "常规赛 第三轮",
+     "way": 3
+    },
+    {
+     "id": "3622",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL夏季赛",
+   "start": "2022-06-08",
+   "end": "2022-09-03"
+  },
+  {
+   "id": "1107",
+   "name": "2022 KGL夏季赛",
+   "year": 2022,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3592",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "3608",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "KGL夏季赛",
+   "start": "2022-06-13",
+   "end": "2022-08-28"
+  },
+  {
+   "id": "1112",
+   "name": "2022NEST王者荣耀S1",
+   "year": 2022,
+   "category": "其他赛事",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3600",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "3602",
+     "name": "淘汰赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 4,
+   "grouped": false,
+   "short": "NEST王者荣耀S1",
+   "start": "2022-07-25",
+   "end": "2022-08-08"
+  },
+  {
+   "id": "1115",
+   "name": "2022王者荣耀挑战者杯",
+   "year": 2022,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3639",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "3640",
+     "name": "淘汰赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀挑战者杯",
+   "start": "2022-09-13",
+   "end": "2022-10-06"
+  },
+  {
+   "id": "1120",
+   "name": "2022世界冠军杯 外卡赛",
+   "year": 2022,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3652",
+     "name": "外卡赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "世界冠军杯 外卡赛",
+   "start": "2022-11-22",
+   "end": "2022-11-24"
+  },
+  {
+   "id": "1119",
+   "name": "2022世界冠军杯 选拔赛",
+   "year": 2022,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3650",
+     "name": "第一轮",
+     "way": 0
+    },
+    {
+     "id": "3651",
+     "name": "第二轮",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "世界冠军杯 选拔赛",
+   "start": "2022-11-25",
+   "end": "2022-11-30"
+  },
+  {
+   "id": "1121",
+   "name": "2022 世界冠军杯",
+   "year": 2022,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3653",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "3654",
+     "name": "淘汰赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "世界冠军杯",
+   "start": "2022-12-03",
+   "end": "2022-12-30"
+  },
+  {
+   "id": "1076",
+   "name": "2022年KPL春季赛临时席位资格赛",
+   "year": 2022,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3515",
+     "name": "资格赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL春季赛临时席位资格赛",
+   "start": "2022-12-27",
+   "end": "2022-12-28"
+  },
+  {
+   "id": "1024",
+   "name": "2021 KGL 春季赛",
+   "year": 2021,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3227",
+     "name": "资格赛",
+     "way": 2
+    },
+    {
+     "id": "3253",
+     "name": "季前赛 积分赛",
+     "way": 3
+    },
+    {
+     "id": "3254",
+     "name": "季前赛 抢位赛",
+     "way": 0
+    },
+    {
+     "id": "3275",
+     "name": "常规赛 分层赛第一轮",
+     "way": 3
+    },
+    {
+     "id": "3285",
+     "name": "常规赛 抢位赛",
+     "way": 0
+    },
+    {
+     "id": "3297",
+     "name": "常规赛 分层赛第二轮",
+     "way": 3
+    },
+    {
+     "id": "3311",
+     "name": "季后赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "KGL 春季赛",
+   "start": "2021-01-18",
+   "end": "2021-05-29"
+  },
+  {
+   "id": "1031",
+   "name": "2021 KPL 季前赛",
+   "year": 2021,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3252",
+     "name": "分组赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL 季前赛",
+   "start": "2021-03-11",
+   "end": "2021-03-20"
+  },
+  {
+   "id": "1033",
+   "name": "2021 KPL 春季赛",
+   "year": 2021,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3270",
+     "name": "常规赛 第一轮",
+     "way": 3
+    },
+    {
+     "id": "3298",
+     "name": "常规赛 第二轮",
+     "way": 3
+    },
+    {
+     "id": "3309",
+     "name": "卡位赛",
+     "way": 0
+    },
+    {
+     "id": "3312",
+     "name": "常规赛 第三轮",
+     "way": 3
+    },
+    {
+     "id": "3321",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL 春季赛",
+   "start": "2021-03-27",
+   "end": "2021-06-26"
+  },
+  {
+   "id": "1049",
+   "name": "2021王者荣耀WEGL微博杯",
+   "year": 2021,
+   "category": "其他赛事",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3335",
+     "name": "积分赛",
+     "way": 3
+    },
+    {
+     "id": "3336",
+     "name": "总决赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 4,
+   "grouped": false,
+   "short": "王者荣耀WEGL微博杯",
+   "start": "2021-06-21",
+   "end": "2021-07-03"
+  },
+  {
+   "id": "1051",
+   "name": "2021 世界冠军杯 选拔赛",
+   "year": 2021,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3341",
+     "name": "第一轮",
+     "way": 0
+    },
+    {
+     "id": "3342",
+     "name": "第二轮",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "世界冠军杯 选拔赛",
+   "start": "2021-07-05",
+   "end": "2021-07-11"
+  },
+  {
+   "id": "1053",
+   "name": "2021 世界冠军杯",
+   "year": 2021,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3347",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "3387",
+     "name": "淘汰赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "世界冠军杯",
+   "start": "2021-07-28",
+   "end": "2021-08-28"
+  },
+  {
+   "id": "1057",
+   "name": "2021年KPL秋季临时席位资格赛",
+   "year": 2021,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3420",
+     "name": "2021年KGL升KPL秋季临时席位资格赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL秋季临时席位资格赛",
+   "start": "2021-09-02",
+   "end": "2021-09-04"
+  },
+  {
+   "id": "1061",
+   "name": "2021第二届王者荣耀微博杯",
+   "year": 2021,
+   "category": "其他赛事",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3429",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "3433",
+     "name": "总决赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 4,
+   "grouped": false,
+   "short": "第二届王者荣耀微博杯",
+   "start": "2021-09-14",
+   "end": "2021-09-21"
+  },
+  {
+   "id": "1062",
+   "name": "2021 KPL 秋季赛",
+   "year": 2021,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3432",
+     "name": "常规赛第一轮",
+     "way": 3
+    },
+    {
+     "id": "3448",
+     "name": "常规赛第二轮",
+     "way": 3
+    },
+    {
+     "id": "3473",
+     "name": "卡位赛",
+     "way": 0
+    },
+    {
+     "id": "3479",
+     "name": "常规赛第三轮",
+     "way": 3
+    },
+    {
+     "id": "3494",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL 秋季赛",
+   "start": "2021-09-22",
+   "end": "2021-12-25"
+  },
+  {
+   "id": "1066",
+   "name": "2021年K甲秋季赛",
+   "year": 2021,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3443",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "3501",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "K甲秋季赛",
+   "start": "2021-09-27",
+   "end": "2021-12-19"
+  },
+  {
+   "id": "1077",
+   "name": "2021王者荣耀挑战者杯",
+   "year": 2021,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3518",
+     "name": "选拔赛",
+     "way": 3
+    },
+    {
+     "id": "3522",
+     "name": "淘汰赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀挑战者杯",
+   "start": "2021-12-31",
+   "end": "2022-01-15"
+  },
+  {
+   "id": "1014",
+   "name": "2020 冬季冠军杯",
+   "year": 2020,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3211",
+     "name": "选拔赛",
+     "way": 3
+    },
+    {
+     "id": "3215",
+     "name": "正赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "冬季冠军杯",
+   "start": "2020-01-07",
+   "end": "2020-01-23"
+  },
+  {
+   "id": "931",
+   "name": "2020 KPL 春季赛",
+   "year": 2020,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2960",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "3039",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL 春季赛",
+   "start": "2020-03-18",
+   "end": "2020-06-13"
+  },
+  {
+   "id": "935",
+   "name": "2020 KPLGT 春季赛",
+   "year": 2020,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2969",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "3018",
+     "name": "选拔赛",
+     "way": 0
+    },
+    {
+     "id": "3024",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "KPLGT 春季赛",
+   "start": "2020-03-29",
+   "end": "2020-05-18"
+  },
+  {
+   "id": "934",
+   "name": "终极高手挑战赛",
+   "year": 2020,
+   "category": "其他赛事",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2980",
+     "name": "终极高手挑战赛",
+     "way": 0
+    }
+   ],
+   "catOrder": 4,
+   "grouped": false,
+   "short": "终极高手挑战赛",
+   "start": "2020-04-07",
+   "end": "2020-04-07"
+  },
+  {
+   "id": "940",
+   "name": "2020 KGL 春季赛",
+   "year": 2020,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2999",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "3069",
+     "name": "季后赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "KGL 春季赛",
+   "start": "2020-04-08",
+   "end": "2020-07-04"
+  },
+  {
+   "id": "972",
+   "name": "2020 世界冠军杯·选拔赛",
+   "year": 2020,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3065",
+     "name": "第一轮",
+     "way": 0
+    },
+    {
+     "id": "3066",
+     "name": "第二轮",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "世界冠军杯·选拔赛",
+   "start": "2020-06-22",
+   "end": "2020-06-28"
+  },
+  {
+   "id": "974",
+   "name": "2020 世界冠军杯",
+   "year": 2020,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3070",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "3079",
+     "name": "淘汰赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "世界冠军杯",
+   "start": "2020-07-15",
+   "end": "2020-08-16"
+  },
+  {
+   "id": "990",
+   "name": "2020 KGL 秋季赛",
+   "year": 2020,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3188",
+     "name": "季后赛",
+     "way": 1
+    },
+    {
+     "id": "3152",
+     "name": "分组定级赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "KGL 秋季赛",
+   "start": "2020-09-13",
+   "end": "2020-12-12"
+  },
+  {
+   "id": "995",
+   "name": "2020 KPL 秋季赛",
+   "year": 2020,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "3151",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "3181",
+     "name": "季后赛",
+     "way": 0
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL 秋季赛",
+   "start": "2020-09-16",
+   "end": "2020-12-19"
+  },
+  {
+   "id": "793",
+   "name": "2019年KPL春季赛",
+   "year": 2019,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2497",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "2597",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL春季赛",
+   "start": "2019-03-06",
+   "end": "2019-06-15"
+  },
+  {
+   "id": "797",
+   "name": "2019年KRKPL春季赛",
+   "year": 2019,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2518",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "2656",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "KRKPL春季赛",
+   "start": "2019-03-18",
+   "end": "2019-06-22"
+  },
+  {
+   "id": "821",
+   "name": "2019年 KPL夏季预选赛",
+   "year": 2019,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2650",
+     "name": "预选赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL夏季预选赛",
+   "start": "2019-05-27",
+   "end": "2019-06-01"
+  },
+  {
+   "id": "824",
+   "name": "2019年 世冠杯KPL赛区预选赛",
+   "year": 2019,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2655",
+     "name": "预选赛",
+     "way": 0
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "世冠杯KPL赛区预选赛",
+   "start": "2019-06-06",
+   "end": "2019-06-09"
+  },
+  {
+   "id": "835",
+   "name": "2019年 世冠杯KRKPL赛区预选赛",
+   "year": 2019,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2681",
+     "name": "第一轮",
+     "way": 0
+    },
+    {
+     "id": "2683",
+     "name": "第二轮",
+     "way": 1
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "世冠杯KRKPL赛区预选赛",
+   "start": "2019-06-24",
+   "end": "2019-07-01"
+  },
+  {
+   "id": "839",
+   "name": "2019年王者荣耀世界冠军杯",
+   "year": 2019,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2689",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "2716",
+     "name": "淘汰赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀世界冠军杯",
+   "start": "2019-07-10",
+   "end": "2019-08-10"
+  },
+  {
+   "id": "864",
+   "name": "2019年 KRKPL 秋季赛",
+   "year": 2019,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2749",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "2825",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "KRKPL 秋季赛",
+   "start": "2019-09-08",
+   "end": "2019-12-01"
+  },
+  {
+   "id": "866",
+   "name": "2019年 KPL 秋季赛",
+   "year": 2019,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2750",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "2833",
+     "name": "季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL 秋季赛",
+   "start": "2019-09-11",
+   "end": "2019-12-14"
+  },
+  {
+   "id": "743",
+   "name": "2019年 KPL春季预选赛",
+   "year": 2019,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2329",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "2342",
+     "name": "晋级赛",
+     "way": 4
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL春季预选赛",
+   "start": "2019-11-19",
+   "end": "2019-11-28"
+  },
+  {
+   "id": "891",
+   "name": "2019冬季赛·预选赛",
+   "year": 2019,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2860",
+     "name": "冬季预选赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "冬季赛·预选赛",
+   "start": "2019-12-03",
+   "end": "2019-12-06"
+  },
+  {
+   "id": "897",
+   "name": "2019KPL席位赛",
+   "year": 2019,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2882",
+     "name": "席位赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL席位赛",
+   "start": "2019-12-07",
+   "end": "2019-12-10"
+  },
+  {
+   "id": "902",
+   "name": "2019年王者荣耀冬季冠军杯",
+   "year": 2019,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2895",
+     "name": "选拔赛",
+     "way": 3
+    },
+    {
+     "id": "2900",
+     "name": "淘汰赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀冬季冠军杯",
+   "start": "2019-12-21",
+   "end": "2020-01-04"
+  },
+  {
+   "id": "577",
+   "name": "2018年 KPL春季预选赛",
+   "year": 2018,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "1779",
+     "name": "淘汰赛",
+     "way": 2
+    },
+    {
+     "id": "1771",
+     "name": "积分循环赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL春季预选赛",
+   "start": "2018-01-01",
+   "end": "2018-01-12"
+  },
+  {
+   "id": "592",
+   "name": "2018年KPL春季赛",
+   "year": 2018,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2007",
+     "name": "总决赛",
+     "way": 1
+    },
+    {
+     "id": "1943",
+     "name": "东部季后赛",
+     "way": 2
+    },
+    {
+     "id": "1944",
+     "name": "西部季后赛",
+     "way": 2
+    },
+    {
+     "id": "1946",
+     "name": "保级赛",
+     "way": 1
+    },
+    {
+     "id": "1805",
+     "name": "常规赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL春季赛",
+   "start": "2018-03-21",
+   "end": "2018-07-08"
+  },
+  {
+   "id": "689",
+   "name": "2018 冠军杯预选赛",
+   "year": 2018,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2038",
+     "name": "韩国赛区",
+     "way": 3
+    },
+    {
+     "id": "2039",
+     "name": "东南亚赛区",
+     "way": 3
+    },
+    {
+     "id": "2040",
+     "name": "欧美赛区",
+     "way": 3
+    },
+    {
+     "id": "2042",
+     "name": "香港赛区",
+     "way": 3
+    },
+    {
+     "id": "2043",
+     "name": "台湾赛区",
+     "way": 3
+    },
+    {
+     "id": "2044",
+     "name": "澳门赛区",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "冠军杯预选赛",
+   "start": "2018-06-19",
+   "end": "2018-06-21"
+  },
+  {
+   "id": "685",
+   "name": "2018年 KPL秋季预选赛",
+   "year": 2018,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2136",
+     "name": "复赛",
+     "way": 2
+    },
+    {
+     "id": "2033",
+     "name": "积分淘汰赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL秋季预选赛",
+   "start": "2018-07-16",
+   "end": "2018-07-26"
+  },
+  {
+   "id": "690",
+   "name": "2018 王者荣耀冠军杯 国际邀请赛",
+   "year": 2018,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2135",
+     "name": "淘汰赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀冠军杯 国际邀请赛",
+   "start": "2018-08-01",
+   "end": "2018-08-11"
+  },
+  {
+   "id": "701",
+   "name": "王者荣耀国际版（AoV）亚运会",
+   "year": 2018,
+   "category": "其他赛事",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2184",
+     "name": "Aov",
+     "way": 2
+    }
+   ],
+   "catOrder": 4,
+   "grouped": false,
+   "short": "王者荣耀国际版（AoV）亚运会",
+   "start": "2018-08-26",
+   "end": "2018-08-26"
+  },
+  {
+   "id": "704",
+   "name": "2018KPL秋季赛",
+   "year": 2018,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2374",
+     "name": "总决赛",
+     "way": 1
+    },
+    {
+     "id": "2198",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "2327",
+     "name": "西部季后赛",
+     "way": 2
+    },
+    {
+     "id": "2328",
+     "name": "东部季后赛",
+     "way": 2
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL秋季赛",
+   "start": "2018-09-12",
+   "end": "2018-12-22"
+  },
+  {
+   "id": "726",
+   "name": "2018KRKPL秋季赛",
+   "year": 2018,
+   "category": "次级联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2255",
+     "name": "常规赛",
+     "way": 3
+    },
+    {
+     "id": "2354",
+     "name": "季后赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 3,
+   "grouped": false,
+   "short": "KRKPL秋季赛",
+   "start": "2018-10-22",
+   "end": "2018-12-15"
+  },
+  {
+   "id": "765",
+   "name": "2018王者荣耀冬季冠军杯",
+   "year": 2018,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "2415",
+     "name": "第一阶段",
+     "way": 3
+    },
+    {
+     "id": "2416",
+     "name": "第二阶段",
+     "way": 1
+    },
+    {
+     "id": "2426",
+     "name": "境外赛区附加赛",
+     "way": 1
+    },
+    {
+     "id": "2434",
+     "name": "小组赛",
+     "way": 3
+    },
+    {
+     "id": "2439",
+     "name": "正赛",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者荣耀冬季冠军杯",
+   "start": "2018-12-28",
+   "end": "2019-01-13"
+  },
+  {
+   "id": "416",
+   "name": "2017年 KPL春季赛",
+   "year": 2017,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "1436",
+     "name": "淘汰赛",
+     "way": 1
+    },
+    {
+     "id": "1443",
+     "name": "保级赛",
+     "way": 1
+    },
+    {
+     "id": "1245",
+     "name": "常规赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL春季赛",
+   "start": "2017-03-24",
+   "end": "2017-07-08"
+  },
+  {
+   "id": "473",
+   "name": "2017年 KPL秋季预选赛",
+   "year": 2017,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "1484",
+     "name": "晋级赛",
+     "way": 2
+    },
+    {
+     "id": "1452",
+     "name": "循环赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL秋季预选赛",
+   "start": "2017-06-19",
+   "end": "2017-07-02"
+  },
+  {
+   "id": "498",
+   "name": "2017王者冠军杯",
+   "year": 2017,
+   "category": "杯赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "1517",
+     "name": "5V5正赛",
+     "way": 1
+    },
+    {
+     "id": "1519",
+     "name": "1V1对决",
+     "way": 1
+    }
+   ],
+   "catOrder": 1,
+   "grouped": false,
+   "short": "王者冠军杯",
+   "start": "2017-07-27",
+   "end": "2017-08-19"
+  },
+  {
+   "id": "533",
+   "name": "2017年 KPL秋季赛",
+   "year": 2017,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "1717",
+     "name": "季后赛",
+     "way": 2
+    },
+    {
+     "id": "1716",
+     "name": "保级赛",
+     "way": 1
+    },
+    {
+     "id": "1611",
+     "name": "常规赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL秋季赛",
+   "start": "2017-09-21",
+   "end": "2017-12-23"
+  },
+  {
+   "id": "415",
+   "name": "2017年 KPL春季预选赛",
+   "year": 2017,
+   "category": "预选/资格赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "1244",
+     "name": "淘汰赛",
+     "way": 2
+    },
+    {
+     "id": "1243",
+     "name": "积分循环赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 2,
+   "grouped": false,
+   "short": "KPL春季预选赛",
+   "start": "2017-12-23",
+   "end": "2018-01-15"
+  },
+  {
+   "id": "414",
+   "name": "2016年 KPL秋季赛",
+   "year": 2016,
+   "category": "联赛",
+   "mode": "archive",
+   "stages": [
+    {
+     "id": "1231",
+     "name": "季后赛",
+     "way": 2
+    },
+    {
+     "id": "1229",
+     "name": "常规赛",
+     "way": 3
+    }
+   ],
+   "catOrder": 0,
+   "grouped": false,
+   "short": "KPL秋季赛",
+   "start": "2016-09-17",
+   "end": "2016-12-18"
+  }
+ ]
+}

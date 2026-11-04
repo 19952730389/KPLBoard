@@ -1,0 +1,275 @@
+/* ============================================================
+   iOS / iPadOS 适配层（对应 macOS 版的 mac.css）
+   ------------------------------------------------------------
+   目标设备：
+     · iPhone 12 Pro Max  428 × 926 pt  / 1284 × 2778 px  @3x
+       竖屏安全区：上 47 · 下 34（Home 指示条）· 左 0 · 右 0
+     · iPad Pro 11″（M2）834 × 1194 pt / 1668 × 2388 px  @2x
+       竖屏安全区：上 24（状态栏）· 下 20（Home 指示条）· 左 0 · 右 0
+
+   body 上的类名由 Swift 侧（WebViewModel.applyShellState）注入：
+     kpl-phone / kpl-pad              设备类型
+     kpl-compact / kpl-regular        宽度档位（<700pt / ≥700pt）
+     native-nav                       原生侧栏 / 底栏已接管导航
+
+   设计原则：
+     1) 安全区：原生外壳让网页铺满整屏以实现毛玻璃透叠，
+        被导航栏 / 底栏盖住的部分由原生注入的 --sat / --sab 数值留白兜底；
+     2) 触控优先：命中目标 44pt（Apple 人机规范下限），去掉依赖 hover 的交互；
+     3) 不写死宽度：栅格一律 minmax()/auto-fit，图片 max-width:100%；
+     4) 原生已提供导航与刷新，前端重复的导航与按钮一律隐藏，避免两套入口。
+   ============================================================ */
+
+:root {
+  --sat: 0px;  /* safe-area top    （由原生注入，含导航栏高度） */
+  --sab: 0px;  /* safe-area bottom （由原生注入，含悬浮底栏高度） */
+  --sal: 0px;  /* safe-area left   */
+  --sar: 0px;  /* safe-area right  */
+}
+
+/* 首帧闪白：根背景直接绑主题变量（theme.js 在 <head> 同步写入 data-theme，早于渲染） */
+html { background: var(--bg, #0b0e17); }
+
+/* ---------- 0. 沉浸式毛玻璃的让位 ---------- */
+/* 原生外壳让网页铺满整屏：内容向上滚进导航栏、向下滚进悬浮玻璃底栏，
+   iPad 上还会向左延伸到侧栏之下——四边都是半透明材质，滚到下面的内容
+   会透出毛玻璃观感。这里用原生注入的安全区数值给四边留出被盖住的部分，
+   保证正文不会被导航栏 / 底栏 / 侧栏永久遮挡。 */
+body {
+  /* 顶部额外加 10px 呼吸空间：导航栏下沿紧贴页面标题区会显得拥挤，
+     且状态行与栏底缺少视觉分隔（浅色主题下尤其明显） */
+  padding-top: calc(var(--sat, 0px) + 10px);
+  padding-right: var(--sar, 0px);
+  padding-bottom: var(--sab, 0px);
+  padding-left: var(--sal, 0px);
+}
+/* 悬浮缓存提示（shell.css 已改为右下角小胶囊）：
+   移动端贴底居中、悬浮在玻璃底栏之上，不遮正文与页签 */
+.cache-bar {
+  right: 12px;
+  bottom: calc(var(--sab, 0px) + 10px);
+  max-width: calc(100vw - 24px);
+}
+.cache-bar.is-min { right: 12px; }
+
+/* ---------- 1. 导航唯一化：隐藏前端侧栏，栅格改单列 ---------- */
+/* 与 macOS 版 sidebar-off 同理：只 display:none 的话 .content 会被自动放进
+   第一列（236px）被挤成一条，必须同时把 .app 的栅格改回单列。
+   这里直接常驻（iOS 版导航完全交给原生），不再需要 sidebar-off 开关。 */
+body.native-nav .app { grid-template-columns: minmax(0, 1fr); }
+body.native-nav .sidebar { display: none; }
+
+/* 刷新入口：
+   · iPhone：右上角的原生悬浮按钮承担刷新，隐藏页面内重复按钮；
+   · iPad：原生侧栏不再提供刷新，页面右上角的刷新按钮保留并图标化（不显示文字），
+     状态行 / 时钟已移到左侧，刷新按钮独占右上角。 */
+body.kpl-phone #refreshBtn { display: none; }
+body.kpl-pad.native-nav .topbar .topright { flex: 1 1 auto; }
+body.kpl-pad.native-nav .topbar .btn-refresh { margin-left: auto; padding: 9px 13px; }
+body.kpl-pad.native-nav .topbar .btn-refresh > span:last-child { display: none; }
+/* iPad 图标化后放大刷新图标（用户反馈图标太小） */
+body.kpl-pad.native-nav .topbar .btn-refresh .ico svg { width: 22px; height: 22px; }
+/* 工具页页头的刷新按钮：iPhone 不需要（原生悬浮按钮已提供） */
+body.kpl-phone .page-head .head-refresh { display: none; }
+
+/* ---------- 2. 触控：44pt 命中目标 + 去掉点击高亮 ---------- */
+.nav-item,
+.mini-btn,
+.btn-refresh,
+.season-picker select,
+.stage-filter select,
+.lightbox .close,
+button,
+select {
+  min-height: 44px;
+  min-width: 44px;
+}
+button, select, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;   /* 去掉 300ms 点击延迟，并禁掉双击缩放 */
+}
+
+/* 触摸设备没有 hover：把依赖 hover 的反馈改成 :active */
+.match-card:active,
+.nav-item:active,
+.mini-btn:active,
+.btn-refresh:active,
+.lightbox .close:active {
+  transform: translateY(1px);
+}
+
+/* ---------- 3. 排版：禁止横屏自动放大 ---------- */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body { -webkit-font-smoothing: antialiased; }
+
+/* ---------- 4. 滚动 ---------- */
+body { overscroll-behavior-y: none; }          /* 禁掉下拉橡皮筋，避免误触发整页回弹 */
+.table-wrap,
+.schedule,
+.live-cards,
+.main {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- 5. 防横向溢出（iPhone 428pt 最窄） ---------- */
+/* 注意：.app/.content 裁掉溢出是为了页面不撑破，但**表格内部**必须能横向滚动
+   ——战绩榜 7 列、选手榜 18 列在 428pt 下必然放不下，靠手指左右滑看后面的列。
+   原生「左右滑动切页」手势已在表格内让行（见 BoardWebView 的 kplscroll 上报）。 */
+.app, .content, .view { max-width: 100%; overflow-x: hidden; }
+.table-wrap, .player-table-wrap, [data-hscroll] {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;   /* 滑到尽头不把整页带着走 */
+}
+
+/* ---------- 5b. 选手榜 18 列在 iPhone 上太挤 ----------
+   18 列理论宽度约 1256pt（屏幕只有 428pt）——即使能横滑 3 屏看完，
+   初次看到的 8 列仍是默认视野内的「主要信息」。
+   把 9 个次要列（场均 K/D/A、分均经济/伤害/承伤、各项占比、参团率）标 priority=2，
+   iPhone 默认隐藏；用户主动点击「列筛选」或横滑可看完整数据。
+   关键列（名次 / 选手 / 战队 / 分路 / 场次 / 胜-负 / 胜率 / KDA / 英雄池）永远在。
+   iPad 宽屏 / Split View 宽列全部显示（不必妥协）。 */
+body.kpl-phone [data-priority="2"] { display: none; }
+/* 用户勾选「显示全部列」后：iPhone 也展开所有 priority=2 列 */
+body.kpl-phone.kpl-all-cols [data-priority="2"] { display: table-cell; }
+
+/* checkbox 跟 label 文字并排（默认浏览器是上下两行，iPhone 工具栏会换行很挤） */
+.cb-inline { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; font-size: 12.5px; }
+.cb-inline input { width: 16px; height: 16px; }
+img, svg { max-width: 100%; height: auto; }
+.team-logo, .match-card img { object-fit: contain; }
+img { image-rendering: -webkit-optimize-contrast; }
+/* 长队名 / 长数值不撑破布局 */
+.stats-row, .table-wrap table, .schedule { min-width: 0; }
+
+/* ---------- 6. iPhone（428–926pt） ---------- */
+body.kpl-phone .grid { grid-template-columns: 1fr; }
+body.kpl-phone .live-cards { grid-template-columns: 1fr; }
+body.kpl-phone .stats-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+body.kpl-phone .main,
+body.kpl-phone .topbar,
+body.kpl-phone .filters {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+/* 筛选行在 428pt 下会挤，允许换行 */
+body.kpl-phone .filters { flex-wrap: wrap; gap: 10px; }
+/* 标题由原生显示的年代已过：现在顶部无原生栏，页面品牌区保留，
+   但状态 / 时钟块移到左侧（用户要求），紧跟品牌信息之后 */
+body.native-nav .topbar { justify-content: flex-start; gap: 24px; }
+body.kpl-phone .topbar { justify-content: flex-start; }
+body.kpl-phone .topbar .brand { display: none; }
+/* 手机顶栏：应用名在左（原状态行的位置），时间在其右、状态行在时间下方 */
+body.kpl-phone .topbar .app-name { display: block; margin-top: 2px; }
+body.kpl-phone .topbar .clock { margin-left: auto; align-items: flex-end; }
+/* 表格高度：竖屏 926pt 减去导航/底栏后留给表格的余量 */
+body.kpl-phone.kpl-compact .standings-zone .table-wrap { max-height: 420px; }
+body.kpl-phone.kpl-compact .schedule { max-height: 360px; }
+/* 横屏（926 × 428pt）：刘海让位已由 body 的 --sal/--sar 统一处理，
+   这里只补基础边距 */
+body.kpl-phone.kpl-regular .standings-zone .table-wrap { max-height: 240px; }
+
+/* ---------- 7. iPad（834 / 1194pt） ---------- */
+body.kpl-pad .grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
+body.kpl-pad .live-cards { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+body.kpl-pad .stats-row { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+body.kpl-pad .main,
+body.kpl-pad .topbar {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+/* 竖屏 834pt：两栏保留，表格给足高度 */
+body.kpl-pad.kpl-regular .standings-zone .table-wrap { max-height: 640px; }
+body.kpl-pad.kpl-regular .schedule { max-height: 560px; }
+/* Split View / Slide Over 下的窄列（<700pt）：回退单列 */
+body.kpl-pad.kpl-compact .grid { grid-template-columns: 1fr; }
+body.kpl-pad.kpl-compact .standings-zone .table-wrap { max-height: 480px; }
+body.kpl-pad.kpl-compact .schedule { max-height: 420px; }
+
+/* ---------- 7b. 手机端筛选 / 搜索区瘦身（公共层：所有工具页统一生效） ----------
+   1) 高度：下拉 / 搜索框统一 32px（原 min-height 44px），chips 26px；
+   2) 宽度：搜索框抢占同行剩余空间（min 96px），下拉允许收缩（min 84px）；
+   3) 赛季下拉独占一行（选项文本长，不与其它条件挤在一行），
+      其余「筛选条件 + 搜索框」自然收进同一行；
+   4) 仅样式调整，不改变任何筛选 / 搜索逻辑。 */
+body.kpl-phone .toolbar { gap: 8px; margin-bottom: 10px; }
+body.kpl-phone .toolbar label { flex: 0 0 auto; font-size: 12px; }
+body.kpl-phone .toolbar select,
+body.kpl-phone .toolbar input[type="search"],
+body.kpl-phone .toolbar input[type="text"] {
+  min-height: 32px; height: 32px; padding: 4px 9px; font-size: 12.5px;
+  flex: 0 1 auto; min-width: 84px; max-width: 100%;
+}
+body.kpl-phone .toolbar input[type="search"] { flex: 1 1 110px; min-width: 96px; }
+/* 赛季下拉独占一行 */
+body.kpl-phone .toolbar .kpl-select { flex: 1 1 100%; min-width: 0; max-width: 100%; min-height: 32px; height: 32px; padding: 4px 10px; }
+/* 原画画廊候选搜索框（.combo 包裹）同样抢占剩余空间 */
+body.kpl-phone .toolbar .combo { flex: 1 1 120px; min-width: 96px; }
+/* 筛选 chips 与「立即同步」等小按钮同步瘦身 */
+body.kpl-phone .chip { min-height: 0; padding: 4px 10px; font-size: 12px; }
+body.kpl-phone .toolbar .mini-btn { min-height: 0; padding: 4px 10px; font-size: 12px; }
+
+/* ---------- 7c. iOS 输入放大规避 ----------
+   iOS 聚焦 font-size < 16px 的文本框时会用 scrollView 缩放放大视口（原生层已在
+   键盘收起时还原）。这里在聚焦瞬间把字号提到 16px，让 iOS 从一开始就不触发
+   放大——弹键盘期间页面缩放比例保持不变，不再出现「页面被放大」的观感。 */
+/* 不限 kpl-phone：iPad（body.kpl-pad）下 toolbar 输入框走 tools.css 的 13px，
+   同样 < 16px，聚焦也会被 WebKit 放大，故去掉 body 前缀让两档设备都生效 */
+input[type="search"]:focus,
+input[type="text"]:focus,
+textarea:focus { font-size: 16px; }
+
+/* ---------- 8. 两栏等高（沿用 macOS 1.3.1 的修正） ---------- */
+/* .grid 两列被拉伸到同一行高，右栏 .schedule 写死 max-height 会在卡片中部截断、
+   下面空出大片卡片底色。把面板改纵向 flex，列表吃满余量；
+   用 height 保留 560px 的固有高度，行高计算逻辑不变。 */
+.grid > section.panel { display: flex; flex-direction: column; }
+/* 这里不再声明 max-height:none —— 它与上面 146/150/162/166 行
+   .kpl-compact/.kpl-regular 的断点特异性相同、位置更晚，会胜出并覆盖，
+   使 iPhone/iPad/横屏/分屏的表格高度调参全部失效（统一 560px，iPhone SE
+   667pt 会超屏）。去掉后：height:560px 仍提供固有高度，而 max-height
+   会正常钳制 height，各断点（360/420/560/640px）重新生效。
+   min-height 保持 0，避免 min > max 时反向顶掉断点上限。 */
+.grid > section.panel .schedule {
+  flex: 1 1 auto;
+  height: 560px;
+  min-height: 0;
+}
+/* 反向兜底：左栏更矮时让最后一组卡片吃掉余量，两栏底边始终对齐 */
+.standings-zone > .panel:last-child { flex: 1 1 auto; }
+
+/* ---------- 9. 键盘 / 辅助功能 ---------- */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold, #f5c451);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ---------- 10. 滚动条：iOS 上覆盖式滚动条默认隐藏，不影响布局 ---------- */
+.table-wrap { scrollbar-width: none; }
+.table-wrap::-webkit-scrollbar { display: none; }
+
+/* ---------- 11. 宽表横向滚动的可发现性 ----------
+   表格被截掉时没有任何提示，用户不知道右边还有内容（战绩榜 / 选手榜）。
+   在滚动容器右缘加一条渐隐的金色提示条：还有内容时显示，滑到最右侧自动消失。
+   用纯 CSS（background-attachment: local）实现，无需 JS 监听滚动。 */
+.table-wrap,
+.player-table-wrap,
+[data-hscroll] {
+  background-image:
+    linear-gradient(to right, var(--panel, transparent), transparent),
+    linear-gradient(to left, rgba(245, 196, 81, .55), rgba(245, 196, 81, 0));
+  background-position: right center, right center;
+  background-size: 14px 100%, 14px 100%;
+  background-repeat: no-repeat;
+  background-attachment: local, scroll;   /* 随内容滚动的遮罩 → 滑到尽头自动隐藏 */
+}

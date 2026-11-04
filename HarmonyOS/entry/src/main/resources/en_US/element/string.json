@@ -1,0 +1,9 @@
+{
+  "string": [
+    { "name": "module_desc", "value": "KPL Esports Data Board" },
+    { "name": "EntryAbility_desc", "value": "KPL Esports Data Board" },
+    { "name": "EntryAbility_label", "value": "KPL Board" },
+    { "name": "internet_reason", "value": "Check whether bundled data is up to date" },
+    { "name": "netinfo_reason", "value": "Notify when data can be refreshed" }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "app": {
+    /* 签名配置：默认留空 = 只出未签名包（entry-default-unsigned.hap），
+       用来验证构建链路；真机安装必须签名，两种方式二选一：
+         A) DevEco：File > Project Structure > Signing Configs 勾选「Automatically generate signature」
+            登录华为账号后，IDE 会自动把下段内容填回来（推荐，最省事）；
+         B) 命令行手动签：把下面这段取消注释并填好 4 个文件路径
+            （.p12 密钥库 / .cer 证书 / .p7b Profile 均从 AppGallery Connect 申请），
+            再把 products[0] 里那行被注释的 "signingConfig": "default" 放开。
+       留空时若 products 里仍写 signingConfig，会报
+         hvigor ERROR 00303107 Invalid storeFile value —— 所以两者必须同步。 */
+    "signingConfigs": [
+      // {
+      //   "name": "default",
+      //   "type": "HarmonyOS",
+      //   "material": {
+      //     "storePassword": "******",
+      //     "certpath": "C:/Users/ccgo/kpl-cert/kplboard.cer",
+      //     "keyAlias": "kplboard",
+      //     "keyPassword": "******",
+      //     "profile": "C:/Users/ccgo/kpl-cert/kplboardDebug.p7b",
+      //     "signAlg": "SHA256withECDSA",
+      //     "storeFile": "C:/Users/ccgo/kpl-cert/kplboard.p12"
+      //   }
+      // }
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/ccgo/.ohos/config/default_harmony_0rt2kW7wnaWttGw2izleyraYBb_2AzQ2Uabu1CITo8Y=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BCEE29D4C68F940DEDFB424069DADECD6574F0A7CF1994D58749F6BA907114B24CF54D1966A50A9",
+          "profile": "/Users/ccgo/.ohos/config/default_harmony_0rt2kW7wnaWttGw2izleyraYBb_2AzQ2Uabu1CITo8Y=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/ccgo/.ohos/config/default_harmony_0rt2kW7wnaWttGw2izleyraYBb_2AzQ2Uabu1CITo8Y=.p12",
+          "storePassword": "0000001B1ECFBB400A610D1546D8AB75639813957C6B2189E7839CA1A783DEAC32CE67D68B850BBE7CEA43"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        /* 必须与本机「已安装的 SDK 版本」完全一致，否则报
+             hvigor ERROR 00303312 Cannot find the corresponding SDK version
+           本机 DevEco 26.0.0.851 只装了 HarmonyOS 26.0.0(26)，故两项都写 26。
+           若将来在 DevEco 的 Settings > SDK 里多装了别的大版本，这里才能写别的数字；
+           想兼容更老设备则先在 DevEco 里下载对应版本的 SDK（低版本 SDK 编译 = 低版本可装）。 */
+        /* 新版 hvigor（6.x / DevEco 26）只接受 <major>[.<minor>][.<patch>]，
+           写 "26.0.0(26)" 会报 00308018 api version parameter is illegal。 */
+        "compatibleSdkVersion": "26.0.0",
+        "targetSdkVersion": "26.0.0",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

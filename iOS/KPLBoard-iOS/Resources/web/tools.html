@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>跳转中… · KPL 数据台</title>
+<!-- 工具箱已并入统一外壳（左侧导航），旧链接自动跳转 -->
+<script>
+  (function () {
+    var hash = (location.hash || '').replace(/^#/, '').split('/')[0];
+    var tools = ['items', 'gradient', 'hero', 'player', 'gallery'];
+    location.replace('/' + (tools.indexOf(hash) >= 0 ? '#' + hash : '#items'));
+  })();
+</script>
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: #0b0e17; color: #8b95ad;
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; font-size: 13px; }
+</style>
+</head>
+<body>
+  <div>正在打开 KPL 数据台…</div>
+</body>
+</html>

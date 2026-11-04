@@ -1,0 +1,161 @@
+/* ============================================================
+   macOS 适配层
+   目标环境：macOS 原生窗口（默认 1440×900 pt，最小 900×600，用户可自由缩放）
+   body 上的 mac-wide / mac-narrow 由 Swift 侧（WebViewModel.applyLayoutMode）注入，
+   用于区分「宽窗口」与「窄窗口」两套间距/栅格。
+   （1.3.0 起原生赛季侧栏已移除，前端 .sidebar 就是唯一的左侧导航栏，
+     因此这两个类只影响间距与栅格，不再表示「原生侧栏是否占位」。）
+
+   设计原则：
+   1) 尺寸一律用 pt（CSS px）；Info.plist 里 NSHighResolutionCapable=YES，
+      Retina 屏位图按 @2x 供给即为 1:1，不失真；
+   2) macOS 只有鼠标/触控板，指针恒为 fine pointer：命中目标按 32pt（信息密度优先），
+      并统一补 cursor / hover 反馈（iPad 版这两项写在 @media (hover:hover) 里）；
+   3) 不写死宽度、不拉伸元素：图片 max-width:100% + height:auto，网格 minmax() 自适应；
+   4) 宽窗口吃满宽度做双窗格，窄窗口回退单列。
+   ============================================================ */
+
+/* ---------- 1. 窗口边距：Mac 没有刘海 / Home 指示条，不需要安全区 ---------- */
+body {
+  /* 顶部由原生工具栏（unified toolbar）占据；底部无 Home 指示条，只留呼吸空间 */
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 24px;
+}
+/* 首帧闪白：根背景直接绑主题变量（theme.js 在 <head> 同步写入 data-theme，早于渲染） */
+html { background: var(--bg, #0b0e17); }
+
+/* ---------- 2. 鼠标：命中目标 32pt + 指针反馈 ---------- */
+.nav-item,
+.mini-btn,
+.btn-refresh,
+.season-picker select,
+.stage-filter select,
+.lightbox .close {
+  min-height: 32px;
+  min-width: 32px;
+}
+.nav-item,
+.mini-btn,
+.btn-refresh,
+.lightbox .close,
+button,
+select {
+  cursor: pointer;
+}
+/* 下拉框在 macOS 上按 32pt 高度重排内边距 */
+.season-picker select,
+.stage-filter select {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.nav-item { display: inline-flex; align-items: center; }
+
+/* ---------- 3. 宽窗口：吃满宽度，双窗格 ---------- */
+body.mac-wide .grid {
+  /* 覆盖 style.css 的 @media (max-width:980px){.grid{1fr}}：
+     宽窗口下内容区仍有 1100pt 以上，保持左右两栏而不是堆叠成一列 */
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+}
+body.mac-wide .live-cards {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+body.mac-wide .main,
+body.mac-wide .topbar {
+  padding-left: 26px;
+  padding-right: 26px;
+}
+body.mac-wide .stats-row {
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+}
+
+/* ---------- 4. 窄窗口：单列，收紧边距 ---------- */
+body.mac-narrow .grid { grid-template-columns: 1fr; }
+body.mac-narrow .live-cards {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+body.mac-narrow .main,
+body.mac-narrow .topbar {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* ---------- 5. 图片与图标：不拉伸、不失真 ---------- */
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+/* 队标等固定框位图：保持等比，避免被 CSS 拉变形 */
+.team-logo, .match-card img {
+  object-fit: contain;
+}
+/* 位图在 Retina 屏上按 CSS 尺寸渲染即为超采样，无需额外处理；
+   这里只关闭低质量插值，保证缩小显示时边缘干净 */
+img { image-rendering: -webkit-optimize-contrast; }
+
+/* ---------- 6. 指针设备悬停反馈 ----------
+   macOS 恒为精细指针，无需像 iPad 版那样包 @media (hover:hover) and (pointer:fine) */
+.match-card { transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease; }
+.match-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .32);
+}
+.nav-item:active,
+.mini-btn:active,
+.btn-refresh:active {
+  transform: translateY(1px);
+}
+
+/* ---------- 7. 键盘可达性（Tab 聚焦） ---------- */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold, #f5c451);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---------- 8. 滚动条：macOS 默认覆盖式滚动条在深色底上几乎不可见，这里加描边 ---------- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--tint), .22);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(var(--tint), .38); background-clip: padding-box; }
+.table-wrap { overflow: auto; scrollbar-width: thin; }
+
+/* ---------- 9. 表格纵向高度（Mac 窗口普遍比 iPad 高） ---------- */
+body.mac-wide .standings-zone .table-wrap { max-height: 720px; }
+body.mac-narrow .standings-zone .table-wrap { max-height: 520px; }
+
+/* ---------- 10. 左侧导航栏（前端 .sidebar）的收起状态 ---------- */
+/* 由原生工具栏最左的按钮 / 菜单栏 ⌘⌥S 切换：WebViewModel 在 body 上打 sidebar-off。
+   除了隐藏 sidebar，还必须把 .app 的栅格改回单列——只 display:none 的话，
+   .content 会被自动放进第一列（236px），正文被挤成一条。
+   （窄窗口下 .sidebar 是顶部横条，这里一并收起；mac.css 在 shell.css 之后加载，
+     此处的选择器权重也高于 shell.css 的 @media (max-width:1000px) 规则。） */
+body.sidebar-off .app { grid-template-columns: minmax(0, 1fr); }
+body.sidebar-off .sidebar { display: none; }
+
+/* ---------- 11. 两栏等高：日历列表吃满卡片，不在卡片下半截留空 ---------- */
+/* 现象：.grid 的两列会被拉伸到同一行高（左栏战绩榜由分组表撑到 ~850pt），
+   但右栏 .schedule 写死 max-height: 560px，于是列表在卡片中部就截断，
+   下面空出近 200pt 的卡片底色，和左栏还在继续的表格形成「中间隔断」。
+   做法：把右栏面板改成纵向 flex，列表作为弹性项吃掉剩余高度——
+   同时用 height（而非 max-height）保留 560px 的「固有高度」，
+   这样 .grid 计算行高时右栏的贡献值不变，列宽/行高逻辑完全不受影响。 */
+.grid > section.panel { display: flex; flex-direction: column; }
+.grid > section.panel .schedule {
+  flex: 1 1 auto;
+  height: 560px;      /* 仅作 flex-basis：决定面板固有高度 */
+  max-height: none;   /* 取消硬截断，由面板高度兜底 */
+  min-height: 0;
+}
+/* 反向兜底：左栏内容不足右栏时，让最后一组卡片吃掉剩余高度，
+   保证两栏底边（卡片边框）始终对齐，而不是在中间收口 */
+.standings-zone > .panel:last-child { flex: 1 1 auto; }

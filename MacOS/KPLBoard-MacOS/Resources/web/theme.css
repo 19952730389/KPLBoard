@@ -1,0 +1,196 @@
+/* ==========================================================
+   KPL 看板 · 主题（浅色 / 深色 / 跟随系统）
+   设计：只改一套 CSS 变量，不动布局与业务样式。
+   跟随系统由 theme.js 写入 <html data-theme="light|dark">。
+   ========================================================== */
+
+/* ---------- 深色（与历史版本完全一致，作为默认值） ---------- */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --tint: 255, 255, 255; /* 半透明叠层的底色：深色主题下用白色提亮 */
+  --sidebar-bg: rgba(12, 16, 27, 0.92);
+  --glow: 1;
+
+  --bg: #0b0e17;
+  --bg2: #111726;
+  --panel: rgba(20, 26, 42, 0.72);
+  --panel-solid: #151b2b;
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #e8ecf6;
+  --muted: #8b95ad;
+  --gold: #f5c451;
+  --red: #ff4d5e;
+  --green: #22d38a;
+  --blue: #4d9bff;
+  --purple: #9b6bff;
+}
+
+/* ---------- 浅色 ---------- */
+[data-theme='light'] {
+  color-scheme: light;
+  --tint: 16, 24, 44; /* 浅色主题下改用墨色压暗，保证半透明叠层依然可见 */
+  --sidebar-bg: rgba(255, 255, 255, 0.94);
+  --glow: 0.35;
+
+  --bg: #f2f5fb;
+  --bg2: #e8edf7;
+  --panel: rgba(255, 255, 255, 0.86);
+  --panel-solid: #ffffff;
+  --line: rgba(18, 30, 56, 0.14);
+  --text: #131a2b;
+  --muted: #5d6779;
+  --gold: #a4710d;
+  --red: #d32b40;
+  --green: #0e9160;
+  --blue: #1b6ada;
+  --purple: #7146d6;
+}
+
+/* 背景光晕：浅色下压低强度，避免脏 */
+.bg-glow { opacity: var(--glow); }
+[data-theme='light'] .bg-glow {
+  background:
+    radial-gradient(900px 500px at 12% -10%, rgba(155, 107, 255, 0.13), transparent 60%),
+    radial-gradient(800px 480px at 92% 0%, rgba(255, 77, 94, 0.10), transparent 62%),
+    radial-gradient(700px 420px at 50% 108%, rgba(77, 155, 255, 0.10), transparent 60%);
+}
+
+/* ---------- 浅色主题下的可读性微调 ---------- */
+[data-theme='light'] .logo { color: #2a1a02; }
+[data-theme='light'] .sk-pic { background: rgba(16, 24, 44, 0.06); }
+[data-theme='light'] .side-brand .side-logo { color: #2a1a02; }
+
+/* 低对比度的亮色文字（深色主题下是浅蓝/浅红，浅色主题下会发灰） */
+[data-theme='light'] .badge.live { color: var(--red); border-color: rgba(211, 43, 64, 0.35); }
+[data-theme='light'] .badge-s,
+[data-theme='light'] .gg-type { color: var(--blue); background: rgba(27, 106, 218, 0.10); }
+[data-theme='light'] .error-box { color: #a32134; background: rgba(211, 43, 64, 0.08); }
+[data-theme='light'] .empty-tip { color: var(--muted); }
+[data-theme='light'] .adv-chip.direct { color: var(--gold); }
+[data-theme='light'] .tier-badge.T0 { color: var(--red); }
+[data-theme='light'] .tier-badge.T2 { color: var(--blue); }
+[data-theme='light'] .tier-badge.T3 { color: var(--muted); }
+[data-theme='light'] .t-a { color: var(--purple); }
+[data-theme='light'] .t-c { color: var(--purple); }
+[data-theme='light'] .t-d { color: var(--green); }
+[data-theme='light'] .t-e { color: var(--blue); }
+[data-theme='light'] .t-s { color: #96610b; }
+[data-theme='light'] .t-f { color: var(--muted); }
+[data-theme='light'] .attr-bar { background: rgba(var(--tint), 0.10); }
+
+/* ---------- 主题切换控件 ---------- */
+.theme-switch {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(var(--tint), 0.04);
+}
+.theme-switch button {
+  flex: 1 1 0;
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  padding: 5px 6px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: 0.15s;
+}
+.theme-switch button svg { width: 14px; height: 14px; }
+.theme-switch button:hover { color: var(--text); background: rgba(var(--tint), 0.07); }
+.theme-switch button.on {
+  color: var(--gold);
+  background: rgba(245, 196, 81, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(245, 196, 81, 0.34);
+}
+.theme-switch .lb { white-space: nowrap; }
+@media (max-width: 1000px) {
+  .theme-switch .lb { display: none; }
+  .theme-switch button { padding: 6px 8px; }
+}
+
+/* ==========================================================
+   版本动态（#patch）板块样式
+   ========================================================== */
+.patch-wrap { display: flex; flex-direction: column; gap: 14px; }
+
+.patch-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: linear-gradient(120deg, rgba(245, 196, 81, 0.12), rgba(var(--tint), 0.03));
+}
+.patch-hero .ph-l { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.patch-hero .ph-ico {
+  width: 46px; height: 46px; border-radius: 13px; flex: 0 0 auto;
+  display: grid; place-items: center;
+  background: linear-gradient(150deg, var(--gold), #ff8a3d);
+  color: #22150a;
+}
+.patch-hero .ph-ico svg { width: 24px; height: 24px; }
+.patch-hero h2 { margin: 0; font-size: 17px; letter-spacing: 0.3px; }
+.patch-hero .ph-sub { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+.patch-hero .ph-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.patch-hero .ph-chip {
+  font-size: 11px; padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(var(--tint), 0.05); color: var(--muted);
+}
+.patch-hero .ph-chip b { color: var(--gold); font-weight: 700; }
+
+.patch-cols { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+@media (max-width: 1180px) { .patch-cols { grid-template-columns: 1fr; } }
+
+.patch-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.patch-tabs .chip { cursor: pointer; }
+
+.chg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(272px, 1fr)); gap: 10px; }
+.chg-card {
+  display: flex; gap: 11px; padding: 11px 12px;
+  border: 1px solid var(--line); border-radius: 12px;
+  background: rgba(var(--tint), 0.032);
+  transition: 0.16s;
+}
+.chg-card:hover { transform: translateY(-1px); border-color: rgba(245, 196, 81, 0.34); background: rgba(var(--tint), 0.06); }
+.chg-av { width: 46px; height: 46px; border-radius: 11px; object-fit: cover; flex: 0 0 auto; background: rgba(var(--tint), 0.06); }
+.chg-body { min-width: 0; flex: 1 1 auto; }
+.chg-top { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.chg-name { font-size: 14px; font-weight: 700; letter-spacing: 0.2px; }
+.chg-kind { font-size: 10.5px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.chg-dir { font-size: 10.5px; padding: 1px 8px; border-radius: 999px; font-weight: 700; }
+.chg-dir.buff { color: var(--green); background: rgba(34, 211, 138, 0.14); border: 1px solid rgba(34, 211, 138, 0.34); }
+.chg-dir.nerf { color: var(--red); background: rgba(255, 77, 94, 0.13); border: 1px solid rgba(255, 77, 94, 0.32); }
+.chg-dir.adjust { color: var(--gold); background: rgba(245, 196, 81, 0.13); border: 1px solid rgba(245, 196, 81, 0.32); }
+.chg-lines { margin: 7px 0 0; padding: 0; list-style: none; font-size: 12px; color: var(--muted); line-height: 1.7; }
+.chg-lines li { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chg-foot { margin-top: 8px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); }
+.chg-foot a { color: var(--blue); }
+
+/* 官网公告小板块 */
+.news-list { display: flex; flex-direction: column; gap: 7px; max-height: 520px; overflow-y: auto; padding-right: 4px; }
+.news-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 9px 10px; border-radius: 10px;
+  border: 1px solid transparent; background: rgba(var(--tint), 0.032);
+  transition: 0.15s;
+}
+.news-item:hover { background: rgba(var(--tint), 0.06); border-color: rgba(245, 196, 81, 0.3); }
+.news-item .ni-t { flex: 1 1 auto; min-width: 0; }
+.news-item .ni-title { font-size: 12.8px; line-height: 1.5; }
+.news-item .ni-meta { margin-top: 4px; display: flex; gap: 8px; align-items: center; font-size: 10.5px; color: var(--muted); }
+.news-item .ni-tag { padding: 0 6px; border-radius: 999px; border: 1px solid var(--line); }
+.news-item .ni-tag.patch { color: var(--gold); border-color: rgba(245, 196, 81, 0.4); background: rgba(245, 196, 81, 0.1); }
+.news-item .ni-go { flex: 0 0 auto; color: var(--muted); font-size: 11px; }
+.news-item:hover .ni-go { color: var(--blue); }
